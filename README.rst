@@ -61,8 +61,7 @@ operating systems may vary.
 
    # echo from plaso.formatters import zfs_event_formatter >> /usr/local/lib/python2.7/site-packages/plaso/formatters/__init__.py
 
-7. Optional: Add the new parsers to the category lists in the presets file
-             /usr/local/lib/python2.7/site-packages/plaso/frontend/presets.py
+7. Optional: Add the new parsers to the category lists in the presets file /usr/local/lib/python2.7/site-packages/plaso/frontend/presets.py
 
 
 Usage
@@ -123,9 +122,7 @@ Working with ZFS device images:
 
    zpool import -R <alternate-root-dir> -o readonly=on -d <dir-with-disk-images>
 
-   WARNING: The altroot property will mount filesystems from the new pool
-   under that root - if you do not specify this the imported pool could
-   remount anywhere including /, /usr etc.
+WARNING: The altroot property will mount filesystems from the new pool under that root - if you do not specify this the imported pool could remount anywhere including /, /usr etc.
 
 - Use zfs list to get all the filesystem datasets for the dataset parser::
 
@@ -140,8 +137,7 @@ Working with ZFS device images:
    # zdb -P -bbbbbb -dddddd <poolname>/<dataset> > <dataset-file>
    $ log2timeline.py --zone <timezone> --parsers zfs_zdb_dataset <output-file> <dataset-file>
 
-   WARNING: The dataset parser needs the timezone specified to convert timestamps
-            from the target system's local time to UTC time.
+WARNING: The dataset parser needs the timezone specified to convert timestamps from the target system's local time to UTC time.
 
 - Finally run log2timeline.py on the ALTROOT to add all the non-ZFS events to
   the timeline::
@@ -158,10 +154,8 @@ This software is based on my studies into ZFS Timeline Analysis, see http://rese
 The discussion there will help you make the most use of the ZFS events for
 timeline analysis.
 
-My Presentation at BSDCan:
-   D. Leigh, "Forensic Timestamp Analysis of ZFS", BSDCan 2014, May
-   2014.
-   http://www.bsdcan.org/2014/schedule/events/464.en.html
+Presentation at BSDCan:
+   D. Leigh, "Forensic Timestamp Analysis of ZFS", BSDCan 2014, May 2014. http://www.bsdcan.org/2014/schedule/events/464.en.html
 
 ZFS Timeline Forensics Quick Reference:
     http://research.dylanleigh.net/zfs-bsdcan-2014/zfs-timeline-quickref.pdf
@@ -192,9 +186,10 @@ Changelog
 =========
 
 1.0.1 - 2014-07-24
-        Initial Public release, improved readme and minor fixes
+   Initial Public release, improved readme and minor fixes
 
-1.0.0 - Initial version for my Honours coursework project.
+1.0.0
+   Initial version for my Honours project.
 
 Licence
 =======
