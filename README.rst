@@ -19,16 +19,17 @@ Files
 
 The ZFS ZDB parser project consists of 4 files (apart from documentation):
 
-  zfs_event.py    Encapsulates ZFS events, and any data which must 
-                  be stored as part of an event.
+zfs_event.py
+   Encapsulates ZFS events, and any data which must be stored as part of an event.
 
-  zfs_event_formatter.py Output formatter for ZFS events.
+zfs_event_formatter.py
+   Output formatter for ZFS events.
 
-  zfs_zdb_dataset.py Parser for file events from ZDB dataset 
-                     output.
+zfs_zdb_dataset.py
+   Parser for file events from ZDB dataset output.
 
-  zfs_zdb_label.py Parser for Uberblock events from ZDB label 
-                   output.
+zfs_zdb_label.py
+   Parser for Uberblock events from ZDB label output.
 
 Installation
 ============
@@ -36,39 +37,39 @@ Installation
 These instructions are for FreeBSD 9; file locations for other 
 operating systems may vary.
 
-1. Install Plaso from ports (security/py-plaso) or by using pkg.
+1. Install Plaso from ports (security/py-plaso) or by using pkg::
 
    # pkg install py-plaso
 
-2. Install/copy zfs_event.py to the Plaso events directory:
+2. Install/copy zfs_event.py to the Plaso events directory::
 
    # install zfs_event.py /usr/local/lib/python2.7/site-packages/plaso/events/
 
-3. Install/copy both parsers to the Plaso parsers directory:
+3. Install/copy both parsers to the Plaso parsers directory::
 
    # install zfs_zdb_label.py zfs_zdb_dataset.py \
       /usr/local/lib/python2.7/site-packages/plaso/parsers/
 
-4. Add the new parsers to the parser initialization script:
+4. Add the new parsers to the parser initialization script::
 
    # echo from plaso.parsers import zfs_zdb_label >> \
       /usr/local/lib/python2.7/site-packages/plaso/parsers/__init__.py
    # echo from plaso.parsers import zfs_zdb_dataset >> \
       /usr/local/lib/python2.7/site-packages/plaso/parsers/__init__.py
 
-5. Install/copy zfs_event_formatter.py to the Plaso formatters directory:
+5. Install/copy zfs_event_formatter.py to the Plaso formatters directory::
 
    # install zfs_event.py \
       /usr/local/lib/python2.7/site-packages/plaso/formatters/
 
-6. Add the new formatter to the formatter initialization script:
+6. Add the new formatter to the formatter initialization script::
 
    # echo from plaso.formatters import zfs_event_formatter >>
       \ /usr/local/lib/python2.7/site-packages/plaso/formatters/__init__.py
 
 7. Optional: Add the new parsers to the category lists in the presets file
              /usr/local/lib/python2.7/site-packages/plaso/frontend/presets.py
-      
+
 
 Usage
 =====
@@ -80,19 +81,23 @@ As the new parsers read output from the ZFS debugger - not from
 files or the filesystem itself - it is necessary to run ZDB first 
 manually. The following ZDB commands are used:
 
-   For vdev label (with uberblocks):
+For vdev label (with uberblocks)::
+
    # zdb -P -uuu -l <device> > <uberblock-file>
 
-   For dataset:
+For dataset::
+
    # zdb -P -bbbbbb -dddddd <poolname>/<dataset> > <dataset-file>
 
 The output from ZDB can then be processed by Plaso using the log2timeline.py
 command:
 
-   For vdev label (with uberblocks):
+For vdev label (with uberblocks)::
+
    $ log2timeline.py --parsers zfs_zdb_label <output-file> <uberblock-file>
 
-   For dataset:
+For dataset::
+
    $ log2timeline.py --zone <timezone> --parsers zfs_zdb_dataset <output-file> <dataset-file>
 
 WARNING: The dataset parser needs the timezone specified to convert timestamps
@@ -103,7 +108,8 @@ will be added to it, including events from other parsers. The "mactime" parser
 may be useful in conjunction with the "mac-robber" program to gather timestamps
 from a mounted filesystem and import the events into plaso.
 
-Events can be observed by using the Plaso psort.py command amongst others:
+Events can be observed by using the Plaso psort.py command amongst others::
+
    $ psort.py <output-file>
 
 Working with ZFS device images:
@@ -119,15 +125,15 @@ Working with ZFS device images:
     $ log2timeline.py --parsers zfs_zdb_label <output-file> <uberblock-file>
 
 - To use the dataset parser - and access the filesystem itself for other
-  Plaso parsers - you need to import the devices in the pool read only:
+  Plaso parsers - you need to import the devices in the pool read only::
 
    zpool import -R <alternate-root-dir> -o readonly=on -d <dir-with-disk-images>
 
-   - WARNING: The altroot property will mount filesystems from the new pool
-     under that root - if you do not specify this the imported pool could
-     remount anywhere including /, /usr etc.
+   WARNING: The altroot property will mount filesystems from the new pool
+   under that root - if you do not specify this the imported pool could
+   remount anywhere including /, /usr etc.
 
-- Use zfs list to get all the filesystem datasets for the dataset parser:
+- Use zfs list to get all the filesystem datasets for the dataset parser::
 
     # zfs list -t filesystem
 
@@ -135,7 +141,7 @@ Working with ZFS device images:
     step and the next one.
 
 - Then use the ZDB commands to get the object information for each dataset and
-  add it to plaso:
+  add it to plaso::
 
    # zdb -P -bbbbbb -dddddd <poolname>/<dataset> > <dataset-file>
    $ log2timeline.py --zone <timezone> --parsers zfs_zdb_dataset <output-file> <dataset-file>
@@ -144,7 +150,7 @@ Working with ZFS device images:
             from the target system's local time to UTC time.
 
 - Finally run log2timeline.py on the ALTROOT to add all the non-ZFS events to
-  the timeline:
+  the timeline::
 
    $ log2timeline.py <output-file> <altroot>
 
