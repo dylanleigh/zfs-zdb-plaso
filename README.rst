@@ -5,8 +5,7 @@ ZFS ZDB Plaso Parsers
 
 Version 1.0.1
 
-WWW:    http://research.dylanleigh.net/zfs-time-forensics/plaso-zdb/
-Author: Dylan Leigh - http://research.dylanleigh.net/
+http://research.dylanleigh.net/zfs-time-forensics/plaso-zdb/
 
 Introduction
 ============
@@ -47,25 +46,20 @@ operating systems may vary.
 
 3. Install/copy both parsers to the Plaso parsers directory::
 
-   # install zfs_zdb_label.py zfs_zdb_dataset.py \
-      /usr/local/lib/python2.7/site-packages/plaso/parsers/
+   # install zfs_zdb_label.py zfs_zdb_dataset.py /usr/local/lib/python2.7/site-packages/plaso/parsers/
 
 4. Add the new parsers to the parser initialization script::
 
-   # echo from plaso.parsers import zfs_zdb_label >> \
-      /usr/local/lib/python2.7/site-packages/plaso/parsers/__init__.py
-   # echo from plaso.parsers import zfs_zdb_dataset >> \
-      /usr/local/lib/python2.7/site-packages/plaso/parsers/__init__.py
+   # echo from plaso.parsers import zfs_zdb_label >> /usr/local/lib/python2.7/site-packages/plaso/parsers/__init__.py
+   # echo from plaso.parsers import zfs_zdb_dataset >> /usr/local/lib/python2.7/site-packages/plaso/parsers/__init__.py
 
 5. Install/copy zfs_event_formatter.py to the Plaso formatters directory::
 
-   # install zfs_event.py \
-      /usr/local/lib/python2.7/site-packages/plaso/formatters/
+   # install zfs_event.py /usr/local/lib/python2.7/site-packages/plaso/formatters/
 
 6. Add the new formatter to the formatter initialization script::
 
-   # echo from plaso.formatters import zfs_event_formatter >>
-      \ /usr/local/lib/python2.7/site-packages/plaso/formatters/__init__.py
+   # echo from plaso.formatters import zfs_event_formatter >> /usr/local/lib/python2.7/site-packages/plaso/formatters/__init__.py
 
 7. Optional: Add the new parsers to the category lists in the presets file
              /usr/local/lib/python2.7/site-packages/plaso/frontend/presets.py
@@ -159,24 +153,23 @@ Working with ZFS device images:
 References/Background
 =====================
 
-This software is based on my studies into ZFS Timeline Analysis:
-   http://research.dylanleigh.net/zfs-time-forensics/
-
-   D. Leigh, "Forensic Timestamp Analysis of ZFS", BSDCan 2014, May
-   2014. Available from:
-   http://www.bsdcan.org/2014/schedule/events/464.en.html
+This software is based on my studies into ZFS Timeline Analysis, see http://research.dylanleigh.net/zfs-time-forensics/
 
 The discussion there will help you make the most use of the ZFS events for
 timeline analysis.
 
-My ZFS Timeline Forensics Quick Reference is available from:
+My Presentation at BSDCan:
+   D. Leigh, "Forensic Timestamp Analysis of ZFS", BSDCan 2014, May
+   2014.
+   http://www.bsdcan.org/2014/schedule/events/464.en.html
+
+ZFS Timeline Forensics Quick Reference:
     http://research.dylanleigh.net/zfs-bsdcan-2014/zfs-timeline-quickref.pdf
 
 FAQ/Misc
 ========
 
 Will these parsers be added to the mainstream Plaso?
-
    Because they require manual preprocessing, not at this stage. If we can get
    them working automatically (which will probably mean adding ZFS support
    to TSK which is a BIG task!) then yes.
@@ -191,7 +184,6 @@ timestamp events (from mactime/mac-robber/etc)?
       >128KB and for files modified in parts; see the references for details.
 
 How should I make use of these parsers with other Plaso parsers?
-
    See "Working with ZFS device images" in the Usage section above - summary
    is: Import the pool read-only with an ALTROOT and run Plaso on the altroot
    directory to get non-ZDB evens.
