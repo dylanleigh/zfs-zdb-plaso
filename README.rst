@@ -93,8 +93,7 @@ For dataset::
 
    $ log2timeline.py --zone <timezone> --parsers zfs_zdb_dataset <output-file> <dataset-file>
 
-WARNING: The dataset parser needs the timezone specified to convert timestamps
-         from the target system's local time to UTC time.
+WARNING: The dataset parser needs the timezone specified to convert timestamps from the target system's local time to UTC time.
 
 The output file can be an existing Plaso output file; new events 
 will be added to it, including events from other parsers. The "mactime" parser
@@ -112,7 +111,7 @@ Working with ZFS device images:
   via dd or similar, and they are all in one directory somewhere.
 
 - The vdev label parser can be used directly on each device image (not
-  including special purpose devices such as log, cache, or hot spares).
+  including special purpose devices such as log, cache, or hot spares)::
 
     # zdb -P -uuu -l <device> > <uberblock-file>
     $ log2timeline.py --parsers zfs_zdb_label <output-file> <uberblock-file>
@@ -162,7 +161,7 @@ Honours Thesis:
    `4 page summary (PDF) <http://research.dylanleigh.net/zfs-timeline-forensics/dleigh-honours-4pg-summary.pdf>`_
 
 Presentation at BSDCan 2014:
-   D. Leigh, "Forensic Timestamp Analysis of ZFS", BSDCan 2014, May 2014. http://www.bsdcan.org/2014/schedule/events/464.en.html
+   Dylan Leigh, "Forensic Timestamp Analysis of ZFS", BSDCan 2014, May 2014. http://www.bsdcan.org/2014/schedule/events/464.en.html
 
 Digital Forensics Magazine Article:
     Dylan Leigh and Hao Shi, `Adding ZFS Events to a Super-timeline <http://research.dylanleigh.net/zfs-timeline-forensics/plaso-zdb/>`_. Digital Forensics Magazine, (20), August 2014.
