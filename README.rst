@@ -5,13 +5,13 @@ ZFS ZDB Plaso Parsers
 
 Version 1.0.1
 
-http://research.dylanleigh.net/zfs-time-forensics/plaso-zdb/
+WWW: http://research.dylanleigh.net/zfs-time-forensics/plaso-zdb/
 
 Introduction
 ============
 
 These parsers process output from the ZFS Debugger (ZDB) to generate events for
-Plaso (http://plaso.kiddaland.net/) based on internal ZFS objects and metadata.
+`Plaso <http://plaso.kiddaland.net/>`_ based on internal ZFS objects and metadata.
 
 Files
 =====
@@ -149,13 +149,23 @@ WARNING: The dataset parser needs the timezone specified to convert timestamps f
 References/Background
 =====================
 
-This software is based on my studies into ZFS Timeline Analysis, see http://research.dylanleigh.net/zfs-time-forensics/
+This software is based on `my research into ZFS Timeline Analysis
+<http://research.dylanleigh.net/zfs-time-forensics/>`_.
 
-The discussion there will help you make the most use of the ZFS events for
-timeline analysis.
+Honours Thesis:
+   Dylan Leigh, Forensic Timeline Analysis of the Zettabyte File
+   System. Honours thesis, College of Engineering and Science, Victoria
+   University, January 2015.
 
-Presentation at BSDCan:
+   `Full Thesis (175 page PDF) <http://research.dylanleigh.net/zfs-timeline-forensics/dleigh-final-honours-thesis-ZFS-Timeline.pdf>`_
+
+   `4 page summary (PDF) <http://research.dylanleigh.net/zfs-timeline-forensics/dleigh-honours-4pg-summary.pdf>`_
+
+Presentation at BSDCan 2014:
    D. Leigh, "Forensic Timestamp Analysis of ZFS", BSDCan 2014, May 2014. http://www.bsdcan.org/2014/schedule/events/464.en.html
+
+Digital Forensics Magazine Article:
+    Dylan Leigh and Hao Shi, `Adding ZFS Events to a Super-timeline <http://research.dylanleigh.net/zfs-timeline-forensics/plaso-zdb/>`_. Digital Forensics Magazine, (20), August 2014.
 
 ZFS Timeline Forensics Quick Reference:
     http://research.dylanleigh.net/zfs-bsdcan-2014/zfs-timeline-quickref.pdf
